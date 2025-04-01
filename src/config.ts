@@ -1,1 +1,1 @@
-export const URL_BASE = '/apps/abbott/ciclo-bellanew';
+export const URL_BASE = import.meta.env.VITE_BASE_URL || '/';

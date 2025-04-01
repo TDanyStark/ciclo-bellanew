@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Brandon";
+  src: url("/apps/abbott/ciclo-bellanew/fonts/Brandon_reg.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon";
+  src: url("/apps/abbott/ciclo-bellanew/fonts/Brandon_blk.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon";
+  src: url("/apps/abbott/ciclo-bellanew/fonts/Brandon_light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@theme {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-purple: #753bbd;
+  --color-purple-heading: #772583;
+  --color-pink: #d787b5;
+  --color-water: #5dc5ed;
+  --color-land: #00a127;
+  --color-fire: #fe5800;
+  --color-air: #7ec9cd;
+  --font-brandon: "Brandon", sans-serif;
+  --font-georgia: Georgia, serif;
+}
