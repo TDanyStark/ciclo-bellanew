@@ -32,3 +32,7 @@
   --font-brandon: "Brandon", sans-serif;
   --font-georgia: Georgia, serif;
 }
+
+input[type="date"]{
+  color-scheme: dark;
+}
