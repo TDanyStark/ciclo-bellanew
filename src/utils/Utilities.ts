@@ -1,3 +1,5 @@
+import { URL_BASE } from "@/config";
+
 export function getFaseColor(dia: number): "agua" | "tierra" | "fuego" | "aire" {
   if (dia >= 1 && dia <= 5) return "agua";
   if (dia >= 6 && dia <= 11) return "tierra";
@@ -22,4 +24,9 @@ const colores: TypeColores = {
 export function getHexColor(dia: number): string {
   const fase = getFaseColor(dia);
   return colores[fase];
+}
+
+export function getImgUrl(dia: number): string {
+  const fase = getFaseColor(dia);
+  return `${URL_BASE}/img/users_cycles/${fase}.webp`;
 }

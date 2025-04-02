@@ -178,7 +178,7 @@ const Calculator = ({ dia, setDia, setMenstrualPhase }: Props) => {
   return (
     <>
       <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
-        <div className="max-w-full">
+        <div>
           <canvas
             ref={canvasRef}
             width="700"
