@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { URL_BASE } from "@/config";
 import Modal from "./Modal";
+import { getHexColor } from "@/utils/getFaseColor";
 
 interface Props {
   dia: number | null;
-  setDia: (dia: number) => void;
+  setDia: (dia: number | null) => void;
 }
 
 const Calculator = ({ dia, setDia }: Props) => {
@@ -33,24 +34,8 @@ const Calculator = ({ dia, setDia }: Props) => {
     // Dibujar la imagen de fondo una sola vez cuando se cargue
     img.onload = function () {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      dibujarCirculo(1);
+      if (dia !== null) dibujarCirculo(dia);
     };
-
-    // Colores de las fases
-    const colores = {
-      agua: "#5dc5ed", // Fase menstrual (días 1-5)
-      tierra: "#00a127", // Fase folicular (días 6-11)
-      fuego: "#fe5800", // Fase ovulatoria (días 12-15)
-      aire: "#7ec9cd", // Fase lútea (días 16-28)
-    };
-
-    // Mapeo de días a fases
-    function getFaseColor(dia: number) {
-      if (dia >= 1 && dia <= 5) return colores.agua;
-      if (dia >= 6 && dia <= 11) return colores.tierra;
-      if (dia >= 12 && dia <= 15) return colores.fuego;
-      return colores.aire;
-    }
 
     function drawArrow(
       ctx: CanvasRenderingContext2D,
@@ -141,10 +126,10 @@ const Calculator = ({ dia, setDia }: Props) => {
         centerY,
         centerX + innerRadius * Math.cos(arrowAngle),
         centerY + innerRadius * Math.sin(arrowAngle),
-        getFaseColor(diaSeleccionado)
+        getHexColor(diaSeleccionado)
       );
     }
-  }, []);
+  }, [dia]);
 
   const handleDiaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = e.target.value;
@@ -170,11 +155,22 @@ const Calculator = ({ dia, setDia }: Props) => {
       setFecha("");
       return;
     }
+
+    // calcular el ciclo
+    const timeDifference =
+      Math.abs(fechaSeleccionada.getTime() - fechaActual.getTime()) /
+      (1000 * 60 * 60 * 24);
+    console.log(timeDifference);
+    let cycleDay = Math.ceil(timeDifference) + 1;
+    if (cycleDay > 28) {
+      cycleDay = 28;
+    }
+    setDia(cycleDay);
   };
 
   const onClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <>
@@ -185,27 +181,50 @@ const Calculator = ({ dia, setDia }: Props) => {
           height="700"
           className="max-w-full"
         ></canvas>
-        <div className="flex flex-col gap-2 lg:gap-4 max-w-80 items-center">
-          <h2 className="text-pink text-2xl lg:text-3xl font-bold text-center">
-            FECHA ÚLTIMA MENSTRUACIÓN
-          </h2>
-          <input
-            type="date"
-            id="startDate"
-            value={fecha}
-            onChange={handleDiaChange}
-            className="block max-w-56 bg-purple text-white px-4 py-1 text-lg"
-          />
+        <div className="flex flex-col gap-2 lg:gap-4 w-80 max-w-80 items-center">
+          {dia === null && (
+            <>
+              <h2 className="text-pink text-2xl lg:text-3xl font-bold text-center">
+                FECHA ÚLTIMA MENSTRUACIÓN
+              </h2>
+              <input
+                type="date"
+                id="startDate"
+                value={fecha}
+                onChange={handleDiaChange}
+                className="block max-w-56 bg-purple text-white px-4 py-1 text-lg"
+              />
 
-          <button
-            className="mt-4 text-2xl border-2 border-purple px-4 py-1 cursor-pointer"
-            onClick={handleOnClick}
-          >
-            CALCULAR
-          </button>
+              <button
+                className="mt-4 text-2xl border-2 border-purple px-4 py-1 cursor-pointer"
+                onClick={handleOnClick}
+              >
+                CALCULAR
+              </button>
+            </>
+          )}
+          {
+            // si hay dia seleccionado, mostrar el día y el botón de reiniciar
+            dia !== null && (
+              <div className="flex flex-col gap-2 lg:gap-4 items-center">
+                <h2 className="text-pink text-2xl lg:text-3xl font-bold text-center">
+                  DÍA DEL CICLO: {dia}
+                </h2>
+                <button
+                  className="mt-4 text-2xl border-2 border-purple px-4 py-1 cursor-pointer"
+                  onClick={() => {
+                    setDia(null);
+                    setFecha("");
+                  }}
+                >
+                  REINICIAR
+                </button>
+              </div>
+            )
+          }
         </div>
       </div>
-      <Modal isOpen={open} onClose={onClose} message={message}/>
+      <Modal isOpen={open} onClose={onClose} message={message} />
     </>
   );
 };
