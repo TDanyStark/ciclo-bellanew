@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { createPortal } from "react-dom";
 
 interface Props {
@@ -8,10 +9,22 @@ interface Props {
 
 const Modal = ({ isOpen, onClose, message }: Props) => {
   if (!isOpen) return null;
+  const modalRef = useRef<HTMLDivElement>(null);
   return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center backdrop-blur-[4px] bg-black/30">
+    <div
+      className="fixed inset-0 flex items-center justify-center backdrop-blur-[4px] bg-black/30"
+      onMouseDown={(e) => {
+        // Si el clic ocurre fuera del modal, se cierra
+        if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+          onClose();
+        }
+      }}
+    >
       <div className="w-full h-full grid place-content-center">
-        <div className="relative bg-white rounded-xl w-full max-h-[600px] p-4 md:p-8">
+        <div
+          ref={modalRef}
+          className="relative bg-white rounded-xl w-full max-h-[600px] p-4 md:p-8"
+        >
           <p className="text-center text-2xl">{message}</p>
           <button
             className="absolute -top-12 right-0 grid place-content-center bg-black  rounded-full w-8 h-8 text-white hover:bg-gray-900 transition-all duration-300 cursor-pointer"

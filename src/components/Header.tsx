@@ -9,11 +9,13 @@ const Header = ({ color = "black" }: Props) => {
     <header className="flex gap-4 justify-between">
       {color === "black" && (
         <>
-          <img
-            className="h-10 md:h-12 w-auto"
-            src={`${URL_BASE}/img/logos/abbott_black.webp`}
-            alt="Logo abbott en negro"
-          />
+          <a href={URL_BASE}>
+            <img
+              className="h-10 md:h-12 w-auto"
+              src={`${URL_BASE}/img/logos/abbott_black.webp`}
+              alt="Logo abbott en negro"
+            />
+          </a>
           <img
             className="h-10 md:h-12 w-auto"
             src={`${URL_BASE}/img/logos/bellanew.webp`}
@@ -23,11 +25,13 @@ const Header = ({ color = "black" }: Props) => {
       )}
       {color === "white" && (
         <>
-          <img
-            className="h-10 md:h-12 w-auto"
-            src={`${URL_BASE}/img/logos/abbott_white.webp`}
-            alt="Logo abbott en blanco"
-          />
+          <a href={URL_BASE}>
+            <img
+              className="h-10 md:h-12 w-auto"
+              src={`${URL_BASE}/img/logos/abbott_white.webp`}
+              alt="Logo abbott en blanco"
+            />
+          </a>
           <img
             className="h-10 md:h-12 w-auto"
             src={`${URL_BASE}/img/logos/bellanew_white.webp`}

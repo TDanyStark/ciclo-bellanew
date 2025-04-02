@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { URL_BASE } from "@/config";
 import Modal from "./Modal";
-import { getHexColor } from "@/utils/getFaseColor";
+import { getHexColor } from "@/utils/Utilities";
 
 interface Props {
   dia: number | null;
   setDia: (dia: number | null) => void;
+  setMenstrualPhase: (view: boolean) => void;
 }
 
-const Calculator = ({ dia, setDia }: Props) => {
+const Calculator = ({ dia, setDia, setMenstrualPhase }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fecha, setFecha] = useState<string>("");
   const [open, setOpen] = useState(false);
@@ -172,16 +173,20 @@ const Calculator = ({ dia, setDia }: Props) => {
     setOpen(false);
   };
 
+  const color = dia !== null ? getHexColor(dia) : "white";
+
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 items-center justify-center">
-        <canvas
-          ref={canvasRef}
-          width="700"
-          height="700"
-          className="max-w-full"
-        ></canvas>
-        <div className="flex flex-col gap-2 lg:gap-4 w-80 max-w-80 items-center">
+      <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
+        <div className="max-w-full">
+          <canvas
+            ref={canvasRef}
+            width="700"
+            height="700"
+            className="max-w-full"
+          ></canvas>
+        </div>
+        <div className="flex flex-col gap-2 lg:gap-4 w-80 min-w-80 max-w-80 items-center">
           {dia === null && (
             <>
               <h2 className="text-pink text-2xl lg:text-3xl font-bold text-center">
@@ -206,12 +211,21 @@ const Calculator = ({ dia, setDia }: Props) => {
           {
             // si hay dia seleccionado, mostrar el día y el botón de reiniciar
             dia !== null && (
-              <div className="flex flex-col gap-2 lg:gap-4 items-center">
-                <h2 className="text-pink text-2xl lg:text-3xl font-bold text-center">
-                  DÍA DEL CICLO: {dia}
+              <>
+                <h2 className="text-purple-heading text-2xl lg:text-3xl font-bold">
+                  <span className="block">ESTÁS EN EL</span>
+                  <span className="block text-6xl">DIA {dia}</span>
+                  <span className="block">DE TU CICLO</span>
                 </h2>
                 <button
-                  className="mt-4 text-2xl border-2 border-purple px-4 py-1 cursor-pointer"
+                  className={`mt-2 text-2xl text-white font-bold px-4 py-1 cursor-pointer`}
+                  style={{ backgroundColor: color }}
+                  onClick={() => setMenstrualPhase(true)}
+                >
+                  MÁS INFORMACIÓN
+                </button>
+                <button
+                  className="text-lg border-2 border-purple px-4 py-1 cursor-pointer"
                   onClick={() => {
                     setDia(null);
                     setFecha("");
@@ -219,7 +233,7 @@ const Calculator = ({ dia, setDia }: Props) => {
                 >
                   REINICIAR
                 </button>
-              </div>
+              </>
             )
           }
         </div>
