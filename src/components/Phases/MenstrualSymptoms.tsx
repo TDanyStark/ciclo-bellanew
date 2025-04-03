@@ -5,7 +5,7 @@ const MenstrualSymptoms = () => {
         <span className="font-bold">SÍNTOMAS</span> QUE PUEDES PRESENTAR
         <sup className="text-sm align-super">1</sup>
       </h1>
-      <ul className="mt-4 list-disc list-inside text-lg space-y-2">
+      <ul className="mt-4 list-disc pl-5 text-lg space-y-2 leading-relaxed">
         <li>Dolor e hinchazón de los senos</li>
         <li>Dolor tipo cólico</li>
         <li>Dolor en la zona de los riñones</li>

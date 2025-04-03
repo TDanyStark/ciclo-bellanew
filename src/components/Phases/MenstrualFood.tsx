@@ -5,7 +5,7 @@ const MenstrualFood = () => {
           <span className="font-bold">ALIMENTOS</span> RECOMENDADOS
           <sup className="text-sm align-super">1</sup>
         </h1>
-        <ul className="mt-4 list-disc list-inside text-lg space-y-2">
+        <ul className="mt-4 list-disc pl-5 text-lg space-y-2 leading-relaxed">
           <li>
             <span className="font-bold">
               Alimentos ricos en hierro, que ayudan a reponer el hierro perdido en el sangrado:

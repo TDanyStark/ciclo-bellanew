@@ -14,7 +14,7 @@ const MenstrualCharacteristics = () => {
       <h2 className="mt-6 text-2xl font-bold text-purple-heading">
         CARACTERÍSTICAS:<sup className="text-sm">1,2</sup>
       </h2>
-      <ul className="mt-4 list-disc list-inside text-lg space-y-2">
+      <ul className="mt-4 list-disc pl-5 text-lg space-y-2 leading-relaxed">
         <li>Ocurre en los primeros 5 días del ciclo</li>
         <li>Desprendimiento de la capa funcional del endometrio</li>
         <li>Sangrado como consecuencia de la no fecundación</li>
