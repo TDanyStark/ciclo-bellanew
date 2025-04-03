@@ -34,7 +34,7 @@
   --font-georgia: Georgia, serif;
 }
 
-input[type="date"] {
+#startDate{
   color-scheme: dark;
 }
 

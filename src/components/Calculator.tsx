@@ -9,9 +9,15 @@ interface Props {
   setPhase: (view: boolean) => void;
 }
 
+const obtenerFechaActual = () => {
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  return hoy.toISOString().split("T")[0];
+};
+
 const Calculator = ({ dia, setDia, setPhase }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [fecha, setFecha] = useState<string>("");
+  const [fecha, setFecha] = useState<string>(obtenerFechaActual());
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [animatedDia, setAnimatedDia] = useState<number | null>(null);
@@ -221,7 +227,6 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
                 onChange={handleDiaChange}
                 className="block max-w-56 bg-purple text-white px-4 py-1 text-lg"
               />
-
               <button
                 className="mt-4 text-2xl border-2 border-purple px-4 py-1 cursor-pointer"
                 onClick={handleOnClick}
@@ -251,7 +256,7 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
                   onClick={() => {
                     setDia(null);
                     setAnimatedDia(null);
-                    setFecha("");
+                    setFecha(obtenerFechaActual());
                   }}
                 >
                   REINICIAR
