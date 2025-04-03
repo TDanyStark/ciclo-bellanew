@@ -35,9 +35,9 @@ const Phases = ({ dia }: Props) => {
         <div className="container mx-auto w-full p-4 md:p-6 lg:p-8 pb-0 md:pb-0 lg:pb-0 relative">
           <div className="flex flex-col gap-4 lg:gap-8 h-full justify-between relative">
             <Header color={colorHeaderAndFooter} />
-            <div className="flex flex-col lg:flex-row gap-8 justify-center">
+            <div className="flex flex-col lg:flex-row gap-8 justify-center mt-8">
               <div
-                className={`w-full lg:w-2/5 order-2 lg:order-1 flex flex-col items-center gap-8 border-r-2 ${
+                className={`w-full lg:w-2/5 order-2 lg:order-1 flex flex-col items-center gap-8 lg:border-r-2 ${
                   colorBg === "white" ? "border-purple-heading" : "border-white"
                 }`}
               >
@@ -83,12 +83,13 @@ const Phases = ({ dia }: Props) => {
                         className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
                         role="tab"
                         aria-selected="true"
-                        onClick={() => setPageActive("characteristics")}
+                        onClick={() => {
+                          setPageActive("characteristics");
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
                         <span className="font-bold">CARACTERÍSTICAS</span> DE LA
-                        FASE {
-                          faseName.toUpperCase()
-                        }
+                        FASE {faseName.toUpperCase()}
                       </button>
                     </li>
                     <li role="presentation">
@@ -96,7 +97,10 @@ const Phases = ({ dia }: Props) => {
                         className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
                         role="tab"
                         aria-selected="false"
-                        onClick={() => setPageActive("symptoms")}
+                        onClick={() => {
+                          setPageActive("symptoms");
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
                         <span className="font-bold">SÍNTOMAS</span> QUE PUEDES
                         PRESENTAR
@@ -107,7 +111,10 @@ const Phases = ({ dia }: Props) => {
                         className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
                         role="tab"
                         aria-selected="false"
-                        onClick={() => setPageActive("food")}
+                        onClick={() => {
+                          setPageActive("food");
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
                         <span className="font-bold">ALIMENTOS</span>{" "}
                         RECOMENDADOS
@@ -118,7 +125,10 @@ const Phases = ({ dia }: Props) => {
                         className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
                         role="tab"
                         aria-selected="false"
-                        onClick={() => setPageActive("advice")}
+                        onClick={() => {
+                          setPageActive("advice");
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
                         <span className="font-bold">CONSEJOS</span> DE BIENESTAR
                       </button>
@@ -128,7 +138,10 @@ const Phases = ({ dia }: Props) => {
                         className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
                         role="tab"
                         aria-selected="false"
-                        onClick={() => setPageActive("info")}
+                        onClick={() => {
+                          setPageActive("info");
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                       >
                         <span className="font-bold">INFORMACIÓN</span> MÉDICA
                       </button>
@@ -139,7 +152,10 @@ const Phases = ({ dia }: Props) => {
                   <div className="flex">
                     <button
                       className="ml-auto cursor-pointer"
-                      onClick={() => setPageActive(null)}
+                      onClick={() => {
+                        setPageActive(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                     >
                       <img
                         className="w-10"
