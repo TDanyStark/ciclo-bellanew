@@ -1,9 +1,9 @@
 const MenstrualCharacteristics = () => {
   return (
     <div className="container_info_phases">
-      <h1 className="text-3xl md:text-4xl font-bold text-pink">
-        CARACTERÍSTICAS{" "}
-        <span className="font-light">DE LA FASE MENSTRUAL</span>
+      <h1 className="text-3xl md:text-4xl pt-1 font-light text-pink">
+      <span className="font-bold">CARACTERÍSTICAS</span>{" "}
+        DE LA FASE MENSTRUAL
       </h1>
       <p className="mt-4 text-lg">
         El agua es el elemento que significa purificación, renovación y
@@ -23,7 +23,7 @@ const MenstrualCharacteristics = () => {
           tejido endometrial
         </li>
       </ul>
-      <p className="mt-6 text-sm">
+      <p className="mt-10 text-sm">
         <strong>Referencias:</strong> <span className="font-bold">1.</span> Ferro P. La dimensión sagrada, simbólica y
         mística del agua. Rev Semillas. 2006;28/29. <span className="font-bold">2.</span> Moreno-Gómez E,
         Jáuregui-Lobera I. Variables emocionales y food craving: influencia del

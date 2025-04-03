@@ -140,7 +140,7 @@ const Phases = ({ dia }: Props) => {
                       onClick={() => setPageActive(null)}
                     >
                       <img
-                        className="w-12"
+                        className="w-10"
                         src={URL_BASE + "/img/home.webp"}
                         alt="Icono de home"
                       />
