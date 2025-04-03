@@ -16,7 +16,8 @@
 
 @font-face {
   font-family: "Brandon";
-  src: url("/apps/abbott/ciclo-bellanew/fonts/Brandon_light.woff") format("woff");
+  src: url("/apps/abbott/ciclo-bellanew/fonts/Brandon_light.woff")
+    format("woff");
   font-weight: 300;
   font-style: normal;
 }
@@ -33,6 +34,10 @@
   --font-georgia: Georgia, serif;
 }
 
-input[type="date"]{
+input[type="date"] {
   color-scheme: dark;
+}
+
+.container_info_phases {
+  @apply flex-1 bg-white text-black overflow-clip;
 }

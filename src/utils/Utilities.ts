@@ -28,6 +28,13 @@ const fases = {
   aire: "Lútea",
 }
 
+const phases = {
+  agua: "Menstrual",
+  tierra: "Follicular",
+  fuego: "Ovulatory",
+  aire: "Luteal",
+}
+
 export function getHexColor(dia: number): string {
   const fase = getFaseColor(dia);
   return colores[fase];
@@ -36,6 +43,11 @@ export function getHexColor(dia: number): string {
 export function getFaseName(dia: number): string {
   const fase = getFaseColor(dia);
   return fases[fase];
+}
+
+export function getPhaseName(dia: number): string {
+  const fase = getFaseColor(dia);
+  return phases[fase];
 }
 
 export function getImgUrl(dia: number): string {

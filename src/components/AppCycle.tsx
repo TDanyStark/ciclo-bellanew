@@ -2,16 +2,16 @@ import { useState } from "react";
 import Calculator from "./Calculator";
 import Header from "./Header";
 import Footer from "./Footer";
-import MenstrualPhase from "./Phases";
+import Phases from "./Phases";
 
 const AppCycle = () => {
   const [dia, setDia] = useState<null | number>(null);
-  const [menstrualPhase, setMenstrualPhase] = useState(false);
+  const [phase, setPhase] = useState(false);
 
   return (
     <>
-      {menstrualPhase && dia ? (
-        <MenstrualPhase dia={dia} />
+      {phase && dia ? (
+        <Phases dia={dia} />
       ) : (
         <main className="min-h-screen font-brandon flex flex-col">
           <div className="flex-1 flex">
@@ -21,7 +21,7 @@ const AppCycle = () => {
                 <Calculator
                   dia={dia}
                   setDia={setDia}
-                  setMenstrualPhase={setMenstrualPhase}
+                  setPhase={setPhase}
                 />
                 <Footer />
               </div>

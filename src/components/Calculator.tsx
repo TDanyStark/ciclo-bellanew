@@ -6,10 +6,10 @@ import { getHexColor } from "@/utils/Utilities";
 interface Props {
   dia: number | null;
   setDia: (dia: number | null) => void;
-  setMenstrualPhase: (view: boolean) => void;
+  setPhase: (view: boolean) => void;
 }
 
-const Calculator = ({ dia, setDia, setMenstrualPhase }: Props) => {
+const Calculator = ({ dia, setDia, setPhase }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fecha, setFecha] = useState<string>("");
   const [open, setOpen] = useState(false);
@@ -220,7 +220,7 @@ const Calculator = ({ dia, setDia, setMenstrualPhase }: Props) => {
                 <button
                   className={`mt-2 text-2xl text-white font-bold px-4 py-1 cursor-pointer`}
                   style={{ backgroundColor: color }}
-                  onClick={() => setMenstrualPhase(true)}
+                  onClick={() => setPhase(true)}
                 >
                   MÁS INFORMACIÓN
                 </button>
