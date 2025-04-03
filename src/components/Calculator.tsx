@@ -14,8 +14,29 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
   const [fecha, setFecha] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [animatedDia, setAnimatedDia] = useState<number | null>(null);
 
   useEffect(() => {
+    if (dia === null) return;
+
+    let currentDay = 1;
+    const step = 1; // Incremento por cuadro de animación
+    const animationSpeed = 30; // Velocidad en milisegundos por cuadro
+
+    const animate = () => {
+      if (currentDay <= dia) {
+        setAnimatedDia(currentDay);
+        currentDay += step;
+        setTimeout(() => requestAnimationFrame(animate), animationSpeed);
+      }
+    };
+
+    setAnimatedDia(1); // Reiniciar la animación desde el día 1
+    requestAnimationFrame(animate);
+  }, [dia]);
+
+  useEffect(() => {
+    console.log("useEffect canvas", animatedDia);
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -28,14 +49,12 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
     const outerRadius = Math.min(centerX, centerY) - 85;
     const innerRadius = outerRadius * 0.73;
     const daysTotal = 28;
-
     const img = new Image();
     img.src = `${URL_BASE}/img/cycle.webp`;
 
-    // Dibujar la imagen de fondo una sola vez cuando se cargue
     img.onload = function () {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      if (dia !== null) dibujarCirculo(dia);
+      dibujarCirculo(animatedDia);
     };
 
     function drawArrow(
@@ -47,7 +66,7 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
       color = "black"
     ) {
       const headLength = 35;
-      const separacion = 10; // Separación entre la flecha y el punto
+      const separacion = 10;
       toX -= separacion * Math.cos(Math.atan2(toY - fromY, toX - fromX));
       toY -= separacion * Math.sin(Math.atan2(toY - fromY, toX - fromX));
       const angle = Math.atan2(toY - fromY, toX - fromX);
@@ -67,10 +86,13 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
       ctx.fill();
       ctx.closePath();
     }
+
     // Función para dibujar el círculo
-    function dibujarCirculo(diaSeleccionado: number) {
+    function dibujarCirculo(diaSeleccionado: number | null) {
       if (!canvas) return; // Verificar si canvas es null
       if (!ctx) return; // Verificar si ctx es null
+      // si el dia es null, no dibujar nada
+      if (diaSeleccionado === null) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar todo el lienzo
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Volver a dibujar la imagen de fondo
 
@@ -130,7 +152,7 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
         getHexColor(diaSeleccionado)
       );
     }
-  }, [dia]);
+  }, [animatedDia]);
 
   const handleDiaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = e.target.value;
@@ -228,6 +250,7 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
                   className="text-lg border-2 border-purple px-4 py-1 cursor-pointer"
                   onClick={() => {
                     setDia(null);
+                    setAnimatedDia(null);
                     setFecha("");
                   }}
                 >

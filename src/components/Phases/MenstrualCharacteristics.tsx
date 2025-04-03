@@ -30,7 +30,15 @@ const MenstrualCharacteristics = () => {
         ciclo menstrual. JONNPR. 2022;7(1):28-63. <span className="font-bold">3.</span> Izquierdo E, Quea G,
         Barranquero M, et al. La menstruación: síntomas y características del
         sangrado. Reproducción Asistida ORG. 2023. Disponible en:
-        https://www.reproduccionasistida.org/menstruacion/
+        <a
+          href="https://www.reproduccionasistida.org/menstruacion/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline"
+        >
+          https://www.reproduccionasistida.org/menstruacion/
+        </a>
+        .
       </p>
     </div>
   );

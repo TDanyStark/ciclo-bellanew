@@ -11,7 +11,7 @@ const OvulatoryCharacteristics = () => {
         </p>
   
         <h3 className="characteristicsh3">
-          <span className="font-bold">Características:<sup className="text-sm">2</sup></span>
+          <span className="font-bold">CARACTERÍSTICAS:<sup className="text-sm">2</sup></span>
         </h3>
         <ul className="list-disc pl-5 space-y-2 leading-relaxed mt-2">
           <li className="pl-2">
