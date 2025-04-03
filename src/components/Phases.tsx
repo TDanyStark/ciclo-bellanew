@@ -56,11 +56,13 @@ const Phases = ({ dia }: Props) => {
                   </span>
                 </h1>
                 <div className="flex-1 flex">
-                  <img
-                    src={urlImg}
-                    alt={`Imagen de ${faseName}`}
-                    className="w-full object-contain object-bottom mt-auto aspect-[96/100]"
-                  />
+                  <div className="w-full aspect-[96/100] relative">
+                    <img
+                      src={urlImg}
+                      alt={`Imagen de ${faseName}`}
+                      className="w-full h-full object-contain object-bottom mt-auto"
+                    />
+                  </div>
                 </div>
               </div>
               <div
