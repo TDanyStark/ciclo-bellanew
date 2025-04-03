@@ -86,7 +86,9 @@ const Phases = ({ dia }: Props) => {
                         onClick={() => setPageActive("characteristics")}
                       >
                         <span className="font-bold">CARACTERÍSTICAS</span> DE LA
-                        FASE MENSTRUAL
+                        FASE {
+                          faseName.toUpperCase()
+                        }
                       </button>
                     </li>
                     <li role="presentation">
@@ -136,7 +138,7 @@ const Phases = ({ dia }: Props) => {
                 {pageActive && (
                   <div className="flex">
                     <button
-                      className="ml-auto"
+                      className="ml-auto cursor-pointer"
                       onClick={() => setPageActive(null)}
                     >
                       <img

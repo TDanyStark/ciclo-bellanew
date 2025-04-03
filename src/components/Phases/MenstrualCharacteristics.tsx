@@ -1,20 +1,20 @@
 const MenstrualCharacteristics = () => {
   return (
     <div className="container_info_phases">
-      <h1 className="text-3xl md:text-4xl pt-1 font-light text-pink">
+      <h2 className="text-3xl md:text-4xl pt-1 font-light text-pink">
       <span className="font-bold">CARACTERÍSTICAS</span>{" "}
         DE LA FASE MENSTRUAL
-      </h1>
-      <p className="mt-4 text-lg">
+      </h2>
+      <p className="mt-4">
         El agua es el elemento que significa purificación, renovación y
         liberación. Por ello, se relaciona con la fase menstrual, en la que el
         cuerpo se libera y purifica para empezar un nuevo ciclo.
         <sup className="text-sm">1,2</sup>
       </p>
-      <h2 className="mt-6 text-2xl font-bold text-purple-heading">
+      <h2 className="characteristicsh3">
         CARACTERÍSTICAS:<sup className="text-sm">1,2</sup>
       </h2>
-      <ul className="mt-4 list-disc pl-5 text-lg space-y-2 leading-relaxed">
+      <ul className="mt-4 list-disc pl-5 space-y-2 leading-relaxed">
         <li>Ocurre en los primeros 5 días del ciclo</li>
         <li>Desprendimiento de la capa funcional del endometrio</li>
         <li>Sangrado como consecuencia de la no fecundación</li>

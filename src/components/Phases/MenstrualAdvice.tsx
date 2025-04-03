@@ -1,10 +1,10 @@
 const MenstrualAdvice = () => {
   return (
     <div className="container_info_phases">
-      <h1 className="text-3xl md:text-4xl leading-14 font-light text-pink">
+      <h2 className="text-3xl md:text-4xl pt-1 font-light text-pink">
         <span className="font-bold">CONSEJOS</span> DE BIENESTAR
-      </h1>
-      <ul className="mt-4 list-disc pl-5 text-lg space-y-2 leading-relaxed">
+      </h2>
+      <ul className="mt-4 list-disc pl-5 space-y-2 leading-relaxed">
         <li>
           Durante esta fase el cuerpo tiene menos energía, así que las
           actividades físicas recomendadas son las de baja intensidad, como
@@ -44,8 +44,7 @@ const MenstrualAdvice = () => {
           className="text-blue-600 underline"
         >
           https://bit.ly/4iqxaVr
-        </a>
-        <br />
+        </a>{" "}
         <span className="font-bold">2.</span> Consejos Prácticos de Ginecología
         para el Cuidado Menstrual: Bienestar a lo Largo del Ciclo. CentroLab;
         2024. Disponible en:{" "}

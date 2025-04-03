@@ -39,5 +39,9 @@ input[type="date"] {
 }
 
 .container_info_phases {
-  @apply flex-1 bg-white text-black overflow-clip;
+  @apply flex-1 bg-white text-black overflow-clip text-xl;
+}
+
+.characteristicsh3{
+  @apply mt-6 text-2xl font-bold text-purple-heading;
 }

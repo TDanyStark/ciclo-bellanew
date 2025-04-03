@@ -1,11 +1,11 @@
 const MenstrualSymptoms = () => {
   return (
     <div className="container_info_phases">
-      <h1 className="text-3xl md:text-4xl leading-14 font-light text-pink">
+      <h2 className="text-3xl md:text-4xl pt-1 font-light text-pink">
         <span className="font-bold">SÍNTOMAS</span> QUE PUEDES PRESENTAR
         <sup className="text-sm align-super">1</sup>
-      </h1>
-      <ul className="mt-4 list-disc pl-5 text-lg space-y-2 leading-relaxed">
+      </h2>
+      <ul className="mt-4 list-disc pl-5 space-y-2 leading-relaxed">
         <li>Dolor e hinchazón de los senos</li>
         <li>Dolor tipo cólico</li>
         <li>Dolor en la zona de los riñones</li>
