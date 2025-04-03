@@ -21,9 +21,21 @@ const colores: TypeColores = {
   aire: "#7ec9cd", // Fase lútea (días 16-28)
 };
 
+const fases = {
+  agua: "Menstrual",
+  tierra: "Folicular",
+  fuego: "Ovulatoria",
+  aire: "Lútea",
+}
+
 export function getHexColor(dia: number): string {
   const fase = getFaseColor(dia);
   return colores[fase];
+}
+
+export function getFaseName(dia: number): string {
+  const fase = getFaseColor(dia);
+  return fases[fase];
 }
 
 export function getImgUrl(dia: number): string {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Calculator from "./Calculator";
 import Header from "./Header";
 import Footer from "./Footer";
-import MenstrualPhase from "./MenstrualPhase";
+import MenstrualPhase from "./Phases";
 
 const AppCycle = () => {
   const [dia, setDia] = useState<null | number>(null);

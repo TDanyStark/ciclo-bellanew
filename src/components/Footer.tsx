@@ -3,9 +3,11 @@ interface Props {
 }
 
 const Footer = ({ color = "black" }: Props) => {
-  return  (
-    <footer className="text-sm" style={{color}}>PARA USO EXCLUSIVO DEL PROFESIONAL MÉDICO</footer>
-  )
-}
+  return (
+    <footer className="text-sm" style={{ color }}>
+      <p>PARA USO EXCLUSIVO DEL PROFESIONAL MÉDICO</p>
+    </footer>
+  );
+};
 
 export default Footer;
