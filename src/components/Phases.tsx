@@ -59,7 +59,7 @@ const Phases = ({ dia }: Props) => {
                   <img
                     src={urlImg}
                     alt={`Imagen de ${faseName}`}
-                    className="w-full object-contain object-bottom mt-auto"
+                    className="w-full object-contain object-bottom mt-auto aspect-[96/100]"
                   />
                 </div>
               </div>
