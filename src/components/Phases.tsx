@@ -11,9 +11,10 @@ import { URL_BASE } from "@/config";
 
 interface Props {
   dia: number;
+  setPhase: (value: boolean) => void;
 }
 
-const Phases = ({ dia }: Props) => {
+const Phases = ({ dia, setPhase }: Props) => {
   const [pageActive, setPageActive] = useState<
     "characteristics" | "symptoms" | "food" | "advice" | "info" | null
   >(null);
@@ -25,6 +26,15 @@ const Phases = ({ dia }: Props) => {
   const ActiveComponent = pageActive
     ? componentMap[faseKey]?.[pageActive]
     : null;
+
+  const handleClickHome = () => {
+    if (pageActive !== null){
+      setPageActive(null);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return
+    }
+    setPhase(false)
+  }
 
   return (
     <main
@@ -152,23 +162,18 @@ const Phases = ({ dia }: Props) => {
                     </li>
                   </ul>
                 )}
-                {pageActive && (
-                  <div className="flex">
-                    <button
-                      className="ml-auto cursor-pointer"
-                      onClick={() => {
-                        setPageActive(null);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                    >
-                      <img
-                        className="w-10"
-                        src={URL_BASE + "/img/home.webp"}
-                        alt="Icono de home"
-                      />
-                    </button>
-                  </div>
-                )}
+                <div className="flex">
+                  <button
+                    className="ml-auto cursor-pointer"
+                    onClick={handleClickHome}
+                  >
+                    <img
+                      className="w-10"
+                      src={URL_BASE + "/img/home.webp"}
+                      alt="Icono de home"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
             <footer

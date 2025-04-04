@@ -22,6 +22,18 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
   const [message, setMessage] = useState("");
   const [animatedDia, setAnimatedDia] = useState<number | null>(null);
 
+  useEffect(()=>{
+    console.log("ejecutando dia");
+  }, [dia])
+
+  useEffect(()=>{
+    console.log("ejecutando setDia");
+  }, [setDia])
+
+  useEffect(()=>{
+    console.log("ejecutando setPhase");
+  }, [setPhase])
+
   useEffect(() => {
     if (dia === null) return;
 
@@ -42,7 +54,6 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
   }, [dia]);
 
   useEffect(() => {
-    console.log("useEffect canvas", animatedDia);
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -189,7 +200,6 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
     const timeDifference =
       Math.abs(fechaSeleccionada.getTime() - fechaActual.getTime()) /
       (1000 * 60 * 60 * 24);
-    console.log(timeDifference);
     let cycleDay = Math.ceil(timeDifference) + 1;
     if (cycleDay > 28) {
       cycleDay = 28;

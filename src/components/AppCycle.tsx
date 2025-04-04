@@ -11,7 +11,7 @@ const AppCycle = () => {
   return (
     <>
       {phase && dia ? (
-        <Phases dia={dia} />
+        <Phases dia={dia} setPhase={setPhase} />
       ) : (
         <main className="min-h-screen font-brandon flex flex-col">
           <div className="flex-1 flex">
