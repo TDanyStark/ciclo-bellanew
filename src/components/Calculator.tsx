@@ -22,18 +22,6 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
   const [message, setMessage] = useState("");
   const [animatedDia, setAnimatedDia] = useState<number | null>(null);
 
-  useEffect(()=>{
-    console.log("ejecutando dia");
-  }, [dia])
-
-  useEffect(()=>{
-    console.log("ejecutando setDia");
-  }, [setDia])
-
-  useEffect(()=>{
-    console.log("ejecutando setPhase");
-  }, [setPhase])
-
   useEffect(() => {
     if (dia === null) return;
 
