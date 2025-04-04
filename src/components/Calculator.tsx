@@ -170,7 +170,7 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
     if (!fecha) {
       setMessage("Por favor selecciona una fecha");
       setOpen(true);
-      setFecha("");
+      setFecha(obtenerFechaActual());
       return;
     }
 
@@ -178,10 +178,10 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
     const fechaSeleccionada = new Date(fecha + "T00:00:00");
     const fechaActual = new Date();
     fechaActual.setHours(0, 0, 0, 0);
-    if (fechaSeleccionada < fechaActual) {
-      setMessage("La fecha seleccionada es menor a la fecha actual");
+    if (fechaSeleccionada > fechaActual) {
+      setMessage("La fecha seleccionada no puede ser mayor a la actual");
       setOpen(true);
-      setFecha("");
+      setFecha(obtenerFechaActual());
       return;
     }
 
