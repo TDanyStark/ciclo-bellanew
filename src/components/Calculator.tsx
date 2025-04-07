@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { URL_BASE } from "@/config";
 import Modal from "./Modal";
 import { getHexColor } from "@/utils/Utilities";
+import { dibujarCirculo } from "@/utils/CanvasUtils";
 
 interface Props {
   dia: number | null;
@@ -48,7 +49,6 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Configuración
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const outerRadius = Math.min(centerX, centerY) - 85;
@@ -59,104 +59,18 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
 
     img.onload = function () {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      dibujarCirculo(animatedDia);
-    };
-
-    function drawArrow(
-      ctx: CanvasRenderingContext2D,
-      fromX: number,
-      fromY: number,
-      toX: number,
-      toY: number,
-      color = "black"
-    ) {
-      const headLength = 35;
-      const separacion = 10;
-      toX -= separacion * Math.cos(Math.atan2(toY - fromY, toX - fromX));
-      toY -= separacion * Math.sin(Math.atan2(toY - fromY, toX - fromX));
-      const angle = Math.atan2(toY - fromY, toX - fromX);
-
-      ctx.beginPath();
-      ctx.moveTo(toX, toY);
-      ctx.lineTo(
-        toX - headLength * Math.cos(angle - Math.PI / 6),
-        toY - headLength * Math.sin(angle - Math.PI / 6)
-      );
-      ctx.lineTo(
-        toX - headLength * Math.cos(angle + Math.PI / 6),
-        toY - headLength * Math.sin(angle + Math.PI / 6)
-      );
-      ctx.lineTo(toX, toY);
-      ctx.fillStyle = color;
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    // Función para dibujar el círculo
-    function dibujarCirculo(diaSeleccionado: number | null) {
-      if (!canvas) return; // Verificar si canvas es null
-      if (!ctx) return; // Verificar si ctx es null
-      // si el dia es null, no dibujar nada
-      if (diaSeleccionado === null) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar todo el lienzo
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // Volver a dibujar la imagen de fondo
-
-      const anglePerDay = (Math.PI * 2) / daysTotal;
-      const startAngle = (diaSeleccionado - 1) * anglePerDay - Math.PI / 2;
-      const endAngle = diaSeleccionado * anglePerDay - Math.PI / 2;
-
-      // Reiniciar estilos
-      ctx.strokeStyle = "white";
-      ctx.lineWidth = 4;
-      ctx.fillStyle = "white";
-
-      // Dibujar línea inicial
-      ctx.beginPath();
-      ctx.moveTo(
-        centerX + innerRadius * Math.cos(startAngle),
-        centerY + innerRadius * Math.sin(startAngle)
-      );
-      ctx.lineTo(
-        centerX + outerRadius * Math.cos(startAngle),
-        centerY + outerRadius * Math.sin(startAngle)
-      );
-      ctx.stroke();
-
-      // Dibujar línea final
-      ctx.beginPath();
-      ctx.moveTo(
-        centerX + innerRadius * Math.cos(endAngle),
-        centerY + innerRadius * Math.sin(endAngle)
-      );
-      ctx.lineTo(
-        centerX + outerRadius * Math.cos(endAngle),
-        centerY + outerRadius * Math.sin(endAngle)
-      );
-      ctx.stroke();
-
-      // Unir las líneas exteriores
-      ctx.beginPath();
-      ctx.moveTo(
-        centerX + outerRadius * Math.cos(startAngle - 0.01),
-        centerY + outerRadius * Math.sin(startAngle - 0.01)
-      );
-      ctx.lineTo(
-        centerX + outerRadius * Math.cos(endAngle + 0.01),
-        centerY + outerRadius * Math.sin(endAngle + 0.01)
-      );
-      ctx.stroke();
-
-      // Dibujar flecha hacia el día seleccionado
-      const arrowAngle = startAngle + anglePerDay / 2;
-      drawArrow(
+      dibujarCirculo(
         ctx,
+        canvas,
+        img,
+        animatedDia,
         centerX,
         centerY,
-        centerX + innerRadius * Math.cos(arrowAngle),
-        centerY + innerRadius * Math.sin(arrowAngle),
-        getHexColor(diaSeleccionado)
+        outerRadius,
+        innerRadius,
+        daysTotal
       );
-    }
+    };
   }, [animatedDia]);
 
   const handleDiaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
