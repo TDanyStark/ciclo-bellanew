@@ -5,7 +5,7 @@ const OvulatoryInfo = () => {
         <span className="font-bold">INFORMACIÓN</span> MÉDICA
       </h2>
 
-      <ul className="list-disc pl-5 space-y-2 ml-2 leading-relaxed mt-4">
+      <ul className="list-disc pl-5 space-y-2 ml-2 leading-relaxed mt-4 text-white">
         <li className="pl-2">
           Se produce un aumento de la secreción de LH, cuyos
           niveles se multiplican por 10, acompañados de aumentos menores en las
@@ -27,19 +27,19 @@ const OvulatoryInfo = () => {
         </li>
       </ul>
 
-      <p className="mt-4 text-sm">
+      <p className="mt-4 text-sm text-white">
         *FSH: hormona foliculoestimulante; LH:{" "}
         hormona luteinizante.
       </p>
 
-      <h3 className="mt-8 font-light text-2xl uppercase text-purple-heading">
+      <h3 className="mt-8 font-light text-2xl uppercase text-pink">
         <span className="font-bold">
           ¿Cómo actúa 17-β Estradiol + Dienogest
         </span>
         <span className="block">para conservar el equilibrio hormonal?</span>
       </h3>
 
-      <ul className="list-disc pl-5 space-y-2 ml-2 leading-relaxed mt-4">
+      <ul className="list-disc pl-5 space-y-2 ml-2 leading-relaxed mt-4 text-white">
         <li className="pl-2">
           Las combinaciones hormonales que contienen{" "}
           17-β estradiol logran una inhibición eficaz de la
@@ -55,7 +55,7 @@ const OvulatoryInfo = () => {
         </li>
       </ul>
 
-      <p className="mt-10 text-sm">
+      <p className="mt-10 text-sm text-white">
         <strong>Referencias:</strong>
         <span className="font-bold"> 1.</span> Thiyagarajan DK, Basit H,
         Jeanmonod R. Physiology, Menstrual Cycle. [Updated 2024 Sep 27]. In:

@@ -12,7 +12,7 @@ const LutealCharacteristics = () => {
         <sup className="text-sm">1,2</sup>
       </p>
 
-      <h3 className="characteristicsh3">
+      <h3 className="characteristicsh3 text-purple-heading">
         CARACTERÍSTICAS:<sup className="text-sm">2</sup>
       </h3>
 

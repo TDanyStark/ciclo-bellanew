@@ -35,6 +35,20 @@ const phases = {
   aire: "Luteal",
 }
 
+const footer_color = {
+  agua: "black",
+  tierra: "white",
+  fuego: "white",
+  aire: "white",
+}
+
+const color_title = {
+  agua: "color",
+  tierra: "white",
+  fuego: "white",
+  aire: "color",
+}
+
 export function getHexColor(dia: number): string {
   const fase = getFaseColor(dia);
   return colores[fase];
@@ -53,4 +67,14 @@ export function getPhaseName(dia: number): string {
 export function getImgUrl(dia: number): string {
   const fase = getFaseColor(dia);
   return `${URL_BASE}/img/users_cycles/${fase}.webp`;
+}
+
+export function getFooterColor(dia: number): string {
+  const fase = getFaseColor(dia);
+  return footer_color[fase];
+}
+
+export function getColorTitle(dia: number): string {
+  const fase = getFaseColor(dia);
+  return color_title[fase];
 }

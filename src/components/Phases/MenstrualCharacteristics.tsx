@@ -11,7 +11,7 @@ const MenstrualCharacteristics = () => {
         cuerpo se libera y purifica para empezar un nuevo ciclo.
         <sup className="text-sm">1,2</sup>
       </p>
-      <h2 className="characteristicsh3">
+      <h2 className="characteristicsh3 text-purple-heading">
         CARACTERÍSTICAS:<sup className="text-sm">1,2</sup>
       </h2>
       <ul className="mt-4 list-disc pl-5 space-y-2 leading-relaxed">

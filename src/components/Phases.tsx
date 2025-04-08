@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Header from "./Header";
 import {
+  getColorTitle,
   getFaseName,
+  getFooterColor,
   getHexColor,
   getImgUrl,
   getPhaseName,
@@ -19,7 +21,7 @@ const Phases = ({ dia, setPhase }: Props) => {
     "characteristics" | "symptoms" | "food" | "advice" | "info" | null
   >(null);
   const colorBg = pageActive === null ? getHexColor(dia) : "white";
-  const colorHeaderAndFooter = pageActive === null ? "white" : "black";
+  const colorHeader = "black";
   const urlImg = getImgUrl(dia);
   const faseName = getFaseName(dia);
   const faseKey = getPhaseName(dia) as keyof typeof componentMap;
@@ -27,63 +29,69 @@ const Phases = ({ dia, setPhase }: Props) => {
     ? componentMap[faseKey]?.[pageActive]
     : null;
 
+  const colorTitle = getColorTitle(dia);
+  const colorFooter = getFooterColor(dia);
+
   const handleClickHome = () => {
-    if (pageActive !== null){
+    if (pageActive !== null) {
       setPageActive(null);
       window.scrollTo({ top: 0, behavior: "smooth" });
-      return
+      return;
     }
-    setPhase(false)
-  }
+    setPhase(false);
+  };
 
   return (
     <main
       className="min-h-screen font-brandon flex flex-col"
-      style={{ backgroundColor: colorBg }}
+      style={{
+        backgroundImage: `url(${urlImg})`, // Cambia la imagen de fondo según el día
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
       <div className="flex-1 flex">
-        <div className="container mx-auto w-full p-4 md:p-6 lg:p-8 pb-0 md:pb-0 lg:pb-0 relative">
-          <div className="flex flex-col gap-4 lg:gap-8 h-full justify-between relative">
-            <Header color={colorHeaderAndFooter} />
+        <div className="container mx-auto w-full p-4 md:p-6 lg:p-8">
+          <div className="flex flex-col gap-4 lg:gap-8 h-full justify-between relative pb-12 lg:pb-0">
+            <Header color={colorHeader} />
             <div className="flex flex-col lg:flex-row gap-8 justify-center mt-8">
               <div
-                className={`w-full lg:w-2/5 order-2 lg:order-1 flex flex-col items-center gap-8 lg:border-r-2 ${
-                  colorBg === "white" ? "border-purple-heading" : "border-white"
+                className={`w-full lg:w-2/5 flex flex-col items-center gap-8 lg:border-r-2 ${
+                  colorTitle === "color"
+                    ? "border-purple-heading"
+                    : "border-white"
                 }`}
               >
                 <h1
                   className={`${
-                    colorBg === "white" ? "text-pink" : "text-white"
+                    colorTitle === "color" ? "text-pink" : "text-white"
                   } text-4xl lg:text-5xl`}
                 >
                   FASE
                   <span
                     className={`uppercase font-bold block ${
-                      colorBg === "white" ? "text-purple-heading" : "text-white"
+                      colorTitle === "color"
+                        ? "text-purple-heading"
+                        : "text-white"
                     }`}
                   >
                     {faseName}
                   </span>
                 </h1>
-                <div className="flex-1 flex flex-col">
-                  <div className="w-full aspect-[96/100] relative">
-                    <img
-                      src={urlImg}
-                      alt={`Imagen de ${faseName}`}
-                      width={1200}
-                      height={1249}
-                      className="max-w-full max-h-full object-contain object-bottom mt-auto"
-                    />
-                  </div>
+                <div className="flex-1 flex flex-col w-full">
+                  <div className="w-full lg:aspect-[9/10] relative"></div>
                 </div>
               </div>
               <div
-                className="w-full lg:w-3/5 flex flex-col gap-4 lg:gap-8 order-1 lg:order-2 text-white py:py-4 lg:py-8"
+                className="w-full lg:w-3/5 flex flex-col gap-4 lg:gap-8 text-white py:py-4 lg:py-8"
                 role="tablist"
               >
                 <h2
                   className={`text-3xl ${
-                    colorBg === "white" ? "text-purple-heading" : "text-white"
+                    colorTitle === "color"
+                      ? "text-purple-heading"
+                      : "text-white"
                   }`}
                 >
                   <span className="font-bold">DÍA {dia}</span> DE TU CICLO
@@ -91,10 +99,22 @@ const Phases = ({ dia, setPhase }: Props) => {
                 {ActiveComponent ? (
                   <ActiveComponent />
                 ) : (
-                  <ul className="flex-1 px-4 pb-px lg:px-8 lg:pb-px space-y-6 text-2xl">
+                  <ul
+                    className={`flex-1 px-4 pb-px lg:px-8 lg:pb-px space-y-6 text-2xl ${
+                      colorTitle === "color"
+                        ? "text-purple-heading"
+                        : "text-white"
+                    }`}
+                  >
                     <li role="presentation">
                       <button
-                        className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
+                        className={`px-4 py-1 border-2  cursor-pointer text-left
+                          ${
+                            colorTitle === "color"
+                              ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
+                              : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
+                          }
+                          `}
                         role="tab"
                         aria-selected="true"
                         onClick={() => {
@@ -108,7 +128,13 @@ const Phases = ({ dia, setPhase }: Props) => {
                     </li>
                     <li role="presentation">
                       <button
-                        className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
+                        className={`px-4 py-1 border-2  cursor-pointer text-left
+                          ${
+                            colorTitle === "color"
+                              ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
+                              : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
+                          }
+                          `}
                         role="tab"
                         aria-selected="false"
                         onClick={() => {
@@ -122,7 +148,13 @@ const Phases = ({ dia, setPhase }: Props) => {
                     </li>
                     <li role="presentation">
                       <button
-                        className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
+                        className={`px-4 py-1 border-2  cursor-pointer text-left
+                          ${
+                            colorTitle === "color"
+                              ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
+                              : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
+                          }
+                          `}
                         role="tab"
                         aria-selected="false"
                         onClick={() => {
@@ -136,7 +168,13 @@ const Phases = ({ dia, setPhase }: Props) => {
                     </li>
                     <li role="presentation">
                       <button
-                        className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
+                        className={`px-4 py-1 border-2  cursor-pointer text-left
+                          ${
+                            colorTitle === "color"
+                              ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
+                              : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
+                          }
+                          `}
                         role="tab"
                         aria-selected="false"
                         onClick={() => {
@@ -149,7 +187,13 @@ const Phases = ({ dia, setPhase }: Props) => {
                     </li>
                     <li role="presentation">
                       <button
-                        className="px-4 py-1 border-2 border-purple-heading cursor-pointer text-left hover:bg-white hover:text-purple-heading hover:border-white"
+                        className={`px-4 py-1 border-2  cursor-pointer text-left
+                          ${
+                            colorTitle === "color"
+                              ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
+                              : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
+                          }
+                          `}
                         role="tab"
                         aria-selected="false"
                         onClick={() => {
@@ -176,10 +220,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                 </div>
               </div>
             </div>
-            <footer
-              className="text-sm absolute bottom-0 py-4 md:py-6 lg:py-8"
-              style={{ color: colorHeaderAndFooter }}
-            >
+            <footer className="text-sm" style={{ color: colorFooter }}>
               <p>PARA USO EXCLUSIVO DEL PROFESIONAL MÉDICO</p>
             </footer>
           </div>

@@ -11,7 +11,7 @@ const FollicularCharacteristics = () => {
         las bases para la ovulación.
         <sup className="text-sm">1-3</sup>
       </p>
-      <h3 className="characteristicsh3">
+      <h3 className="characteristicsh3 text-purple-heading">
         CARACTERÍSTICAS:<sup className="text-sm">2,3</sup>
       </h3>
       <ul className="list-disc pl-5 space-y-2 leading-relaxed">

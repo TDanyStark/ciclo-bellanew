@@ -4,7 +4,7 @@ const OvulatorySymptoms = () => {
         <h2 className="text-3xl md:text-4xl pt-1 font-light text-pink">
           <span className="font-bold">SÍNTOMAS</span> QUE PUEDES PRESENTAR<sup className="text-sm align-super">1</sup>
         </h2>
-        <ul className="mt-4 list-disc pl-5 space-y-2 leading-relaxed">
+        <ul className="mt-4 list-disc pl-5 space-y-2 leading-relaxed text-white">
           <li className="pl-2">Aumento del deseo sexual y de la sensación de seguridad<sup className="text-sm">1</sup></li>
           <li className="pl-2">Aumento del flujo vaginal<sup className="text-sm">1</sup></li>
           <li className="pl-2">Cambio en el olor o color de la orina<sup className="text-sm">1</sup></li>
@@ -14,14 +14,14 @@ const OvulatorySymptoms = () => {
           <li className="pl-2">Aumento de la temperatura corporal<sup className="text-sm">1</sup></li>
         </ul>
   
-        <p className="mt-10 text-sm">
+        <p className="mt-10 text-sm text-white">
           <strong>Referencias:</strong> 
           <span className="font-bold"> 1.</span> Regenera. Fases del ciclo menstrual: Días, Hormonas y Síntomas [Internet]. Disponible en:{" "}
           <a
             href="https://n9.cl/5u2wk"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline"
+            className="text-pink underline"
           >
             https://n9.cl/5u2wk
           </a>
