@@ -1,13 +1,6 @@
 import { useState } from "react";
 import Header from "./Header";
-import {
-  getColorTitle,
-  getFaseName,
-  getFooterColor,
-  getHexColor,
-  getImgUrl,
-  getPhaseName,
-} from "@/utils/Utilities";
+import { getPhaseConfig } from "@/utils/Utilities";
 import componentMap from "@/utils/componentMap";
 import { URL_BASE } from "@/config";
 
@@ -20,17 +13,11 @@ const Phases = ({ dia, setPhase }: Props) => {
   const [pageActive, setPageActive] = useState<
     "characteristics" | "symptoms" | "food" | "advice" | "info" | null
   >(null);
-  const colorBg = pageActive === null ? getHexColor(dia) : "white";
-  const colorHeader = "black";
-  const urlImg = getImgUrl(dia);
-  const faseName = getFaseName(dia);
-  const faseKey = getPhaseName(dia) as keyof typeof componentMap;
+  const phaseConfig = getPhaseConfig(dia);
+  const faseKey = phaseConfig.phaseName as keyof typeof componentMap;
   const ActiveComponent = pageActive
     ? componentMap[faseKey]?.[pageActive]
     : null;
-
-  const colorTitle = getColorTitle(dia);
-  const colorFooter = getFooterColor(dia);
 
   const handleClickHome = () => {
     if (pageActive !== null) {
@@ -43,40 +30,52 @@ const Phases = ({ dia, setPhase }: Props) => {
 
   return (
     <main
-      className="min-h-screen font-brandon flex flex-col"
+      className="min-h-screen font-brandon flex flex-col main-phases relative"
       style={{
-        backgroundImage: `url(${urlImg})`, // Cambia la imagen de fondo según el día
+        backgroundImage: `url(${phaseConfig.imgUrl})`, // Cambia la imagen de fondo según el día
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="flex-1 flex">
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: `rgba(0, 0, 0, ${phaseConfig.opacity})`, // Overlay with dynamic transparency
+        }}
+      ></div>
+      <div className="flex-1 flex relative" style={{ zIndex: 2 }}>
         <div className="container mx-auto w-full p-4 md:p-6 lg:p-8">
           <div className="flex flex-col gap-4 lg:gap-8 h-full justify-between relative pb-12 lg:pb-0">
-            <Header color={colorHeader} />
+            <Header color={phaseConfig.headerColor} />
             <div className="flex flex-col lg:flex-row gap-8 justify-center mt-8">
               <div
                 className={`w-full lg:w-2/5 flex flex-col items-center gap-8 lg:border-r-2 ${
-                  colorTitle === "color"
+                  phaseConfig.titleColor === "color"
                     ? "border-purple-heading"
                     : "border-white"
                 }`}
               >
                 <h1
                   className={`${
-                    colorTitle === "color" ? "text-pink" : "text-white"
+                    phaseConfig.titleColor === "color"
+                      ? "text-pink"
+                      : "text-white"
                   } text-4xl lg:text-5xl`}
                 >
                   FASE
                   <span
                     className={`uppercase font-bold block ${
-                      colorTitle === "color"
+                      phaseConfig.titleColor === "color"
                         ? "text-purple-heading"
                         : "text-white"
                     }`}
                   >
-                    {faseName}
+                    {phaseConfig.name}
                   </span>
                 </h1>
                 <div className="flex-1 flex flex-col w-full">
@@ -89,7 +88,7 @@ const Phases = ({ dia, setPhase }: Props) => {
               >
                 <h2
                   className={`text-3xl ${
-                    colorTitle === "color"
+                    phaseConfig.titleColor === "color"
                       ? "text-purple-heading"
                       : "text-white"
                   }`}
@@ -101,7 +100,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                 ) : (
                   <ul
                     className={`flex-1 px-4 pb-px lg:px-8 lg:pb-px space-y-6 text-2xl ${
-                      colorTitle === "color"
+                      phaseConfig.titleColor === "color"
                         ? "text-purple-heading"
                         : "text-white"
                     }`}
@@ -110,7 +109,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                       <button
                         className={`px-4 py-1 border-2  cursor-pointer text-left
                           ${
-                            colorTitle === "color"
+                            phaseConfig.titleColor === "color"
                               ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
                               : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
                           }
@@ -123,14 +122,14 @@ const Phases = ({ dia, setPhase }: Props) => {
                         }}
                       >
                         <span className="font-bold">CARACTERÍSTICAS</span> DE LA
-                        FASE {faseName.toUpperCase()}
+                        FASE {phaseConfig.name.toUpperCase()}
                       </button>
                     </li>
                     <li role="presentation">
                       <button
                         className={`px-4 py-1 border-2  cursor-pointer text-left
                           ${
-                            colorTitle === "color"
+                            phaseConfig.titleColor === "color"
                               ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
                               : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
                           }
@@ -150,7 +149,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                       <button
                         className={`px-4 py-1 border-2  cursor-pointer text-left
                           ${
-                            colorTitle === "color"
+                            phaseConfig.titleColor === "color"
                               ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
                               : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
                           }
@@ -170,7 +169,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                       <button
                         className={`px-4 py-1 border-2  cursor-pointer text-left
                           ${
-                            colorTitle === "color"
+                            phaseConfig.titleColor === "color"
                               ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
                               : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
                           }
@@ -189,7 +188,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                       <button
                         className={`px-4 py-1 border-2  cursor-pointer text-left
                           ${
-                            colorTitle === "color"
+                            phaseConfig.titleColor === "color"
                               ? "border-white hover:bg-purple-heading hover:text-white hover:border-purple-heading"
                               : "border-purple-heading hover:bg-white hover:text-purple-heading hover:border-white"
                           }
@@ -220,7 +219,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                 </div>
               </div>
             </div>
-            <footer className="text-sm" style={{ color: colorFooter }}>
+            <footer className="text-sm" style={{ color: phaseConfig.footerColor }}>
               <p>PARA USO EXCLUSIVO DEL PROFESIONAL MÉDICO</p>
             </footer>
           </div>

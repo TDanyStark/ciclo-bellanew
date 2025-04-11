@@ -6,7 +6,7 @@ interface Props {
 
 const Header = ({ color = "black" }: Props) => {
   return (
-    <header className="flex gap-4 justify-between">
+    <header className="flex gap-4 justify-between relative z-10">
       {color === "black" && (
         <>
           <a href={URL_BASE}>
