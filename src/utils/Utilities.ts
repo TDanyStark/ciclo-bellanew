@@ -54,3 +54,8 @@ export function getPhaseConfig(dia: number) {
   const phaseKey = getFaseColor(dia);
   return phaseConfig[phaseKey];
 }
+
+export function getHexColor(dia: number): string {
+  const phaseKey = getFaseColor(dia);
+  return phaseConfig[phaseKey].color;
+}
