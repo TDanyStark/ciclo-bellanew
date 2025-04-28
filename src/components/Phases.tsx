@@ -93,7 +93,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                       : "text-white"
                   }`}
                 >
-                  <span className="font-bold">DÍA {dia}</span> DE TU CICLO
+                  <span className="font-bold">DÍA {dia}</span> DE SU CICLO
                 </h2>
                 {ActiveComponent ? (
                   <ActiveComponent />
@@ -141,7 +141,7 @@ const Phases = ({ dia, setPhase }: Props) => {
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                       >
-                        <span className="font-bold">SÍNTOMAS</span> QUE PUEDES
+                        <span className="font-bold">SÍNTOMAS</span> QUE SE PUEDEN
                         PRESENTAR
                       </button>
                     </li>

@@ -152,9 +152,9 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
             dia !== null && (
               <>
                 <h2 className="text-purple-heading text-2xl lg:text-3xl font-bold">
-                  <span className="block">ESTÁS EN EL</span>
+                  <span className="block">ESTÁ EN EL</span>
                   <span className="block text-6xl">DIA {dia}</span>
-                  <span className="block">DE TU CICLO</span>
+                  <span className="block">DE SU CICLO</span>
                 </h2>
                 <button
                   className={`mt-2 text-2xl text-white font-bold px-4 py-1 cursor-pointer`}

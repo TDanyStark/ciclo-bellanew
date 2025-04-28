@@ -2,7 +2,7 @@ const MenstrualSymptoms = () => {
   return (
     <div className="container_info_phases">
       <h2 className="text-3xl md:text-4xl pt-1 font-light text-pink">
-        <span className="font-bold">SÍNTOMAS</span> QUE PUEDES PRESENTAR
+        <span className="font-bold">SÍNTOMAS</span> QUE SE PUEDEN PRESENTAR
         <sup className="text-sm align-super">1</sup>
       </h2>
       <ul className="mt-4 list-disc pl-5 space-y-2 leading-relaxed">
