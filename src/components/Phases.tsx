@@ -19,6 +19,10 @@ const Phases = ({ dia, setPhase }: Props) => {
     ? componentMap[faseKey]?.[pageActive]
     : null;
 
+  const textGoBack = pageActive
+    ? "VOLVER"
+    : "VOLVER A LA RULETA";
+
   const handleClickHome = () => {
     if (pageActive !== null) {
       setPageActive(null);
@@ -207,9 +211,10 @@ const Phases = ({ dia, setPhase }: Props) => {
                 )}
                 <div className="flex">
                   <button
-                    className="ml-auto cursor-pointer"
+                    className="ml-auto cursor-pointer flex items-end gap-2 justify-center text-sm"
                     onClick={handleClickHome}
                   >
+                    {textGoBack}
                     <img
                       className="w-10"
                       src={URL_BASE + "/img/home.webp"}

@@ -51,7 +51,8 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
-    const outerRadius = Math.min(centerX, centerY) - 85;
+    const padding = canvas.width * 0.12;
+    const outerRadius = Math.min(centerX, centerY) - padding;
     const innerRadius = outerRadius * 0.73;
     const daysTotal = 28;
     const img = new Image();
@@ -121,8 +122,8 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
         <div>
           <canvas
             ref={canvasRef}
-            width="700"
-            height="700"
+            width="500"
+            height="500"
             className="max-w-full"
           ></canvas>
         </div>
@@ -176,6 +177,16 @@ const Calculator = ({ dia, setDia, setPhase }: Props) => {
               </>
             )
           }
+          <a
+            href={URL_BASE}
+            className="mt-4 cursor-pointer"
+          >
+            <img
+              className="w-10"
+              src={URL_BASE + "/img/HomeColorAbbott.webp"}
+              alt="Icono de home"
+            />
+          </a>
         </div>
       </div>
       <Modal isOpen={open} onClose={onClose} message={message} />
